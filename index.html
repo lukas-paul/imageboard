@@ -2,9 +2,28 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title></title>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Imageboard</title>
+    <link href="/style.css" rel="stylesheet" />
 </head>
 <body>
+    <h1>Imageboard</h1>
+    <main id="main">
+        
+    
+            <div class="board">
+                <div v-for="element in imageData">
+                    <div class="img-text-container">
+                    <img class="image" :src="element.url" />
+                    <p>{{element.title}}</p>
+                    </div>
+                </div>
+            
+            </div>
+      
+     
+    </main>
+
     <script src="/js/app.js" type="module" crossorigin="use-credentials"></script>
 </body>
 </html>

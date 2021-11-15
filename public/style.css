@@ -1,0 +1,20 @@
+main {
+    background-color: rosybrown;
+}
+
+.image {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+
+.board {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.img-text-container {
+    height: 350px;
+    border: 1px solid black;
+}
