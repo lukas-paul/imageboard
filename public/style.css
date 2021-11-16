@@ -1,5 +1,21 @@
-main {
-    background-color: rosybrown;
+#main {
+    display: grid;
+    grid-template-rows: 0.5fr 0.5fr 8fr;
+}
+
+span {
+    margin-right: 5px;
+}
+
+.upload-area {
+    width: 50%;
+    grid-row: 1;
+    display: flex;
+    justify-content: space-between;
+}
+
+.board {
+    grid-row: 3;
 }
 
 .image {
@@ -11,10 +27,62 @@ main {
 .board {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .img-text-container {
     height: 350px;
     border: 1px solid black;
+}
+
+.file-input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.file-input + label {
+    text-align: center;
+    font-size: 1.5em;
+    font-family: Impact;
+    width: 150px;
+    height: 30px;
+    color: white;
+    background-color: black;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.file-input + label:hover {
+    background-color: red;
+}
+
+.input {
+    border: 0;
+    outline: 0;
+    width: 150px;
+    height: 30px;
+    border: 2px solid black;
+    padding: 0px;
+}
+
+button {
+    background-color: black;
+    width: 100px;
+    height: 30px;
+    border: none;
+    color: white;
+    font-family: impact;
+    font-size: 1.5em;
+    text-align: center;
+    padding: 0px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: red;
 }

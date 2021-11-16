@@ -10,11 +10,29 @@
     <h1>Imageboard</h1>
     <main id="main">
         
-    
+        <div class="upload-area">
+            <div><label>Title</label><input v-model="title" name="title" class="input"></div>
+            <div><label>Username</label><input data-lpignore="true" v-model="username" name="username" class="input"></div>
+            <div><label>Description</label><input v-model="description" name="description" class="input"></div>
+            <div>
+       
+                <input class="file-input"
+                    id="file"
+                    name="file"
+                    type="file"
+                    accept="image/*"
+                    @change="setFile"
+                > 
+            <label for="file" class="file-label">Choose a file</label>
+            <button v-on:click="upload">Upload</button>
+        </div>
+        
+        </div>
+        
             <div class="board">
                 <div v-for="element in imageData">
                     <div class="img-text-container">
-                    <img class="image" :src="element.url" />
+                    <img :key="element.id" class="image" :src="element.url" />
                     <p>{{element.title}}</p>
                     </div>
                 </div>
