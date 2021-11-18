@@ -1,6 +1,6 @@
 #main {
     display: grid;
-    grid-template-rows: 0.5fr 0.5fr 8fr;
+    grid-template-rows: 0.5fr 0.5fr 8fr 0.5fr;
 }
 
 span {
@@ -98,7 +98,7 @@ button:hover {
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
     display: grid;
-    grid-template-columns: 1fr 5fr 1fr;
+    grid-template-columns: 2fr 5fr 2fr;
     grid-template-rows: 1fr 8fr 2fr;
 }
 
@@ -115,4 +115,17 @@ button:hover {
     grid-column: 2;
     grid-row: 3;
     place-self: center;
+}
+
+.more-button {
+    grid-row: 4;
+    place-self: center;
+}
+
+.comment-section {
+    grid-column: 3;
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }

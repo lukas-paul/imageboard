@@ -1,0 +1,10 @@
+DROP TABLE IF EXISTS images;
+
+
+CREATE TABLE comments(
+    id SERIAL PRIMARY KEY,
+    image_id INT NOT NULL,
+    author VARCHAR NOT NULL,
+    comment VARCHAR NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

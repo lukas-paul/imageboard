@@ -38,8 +38,9 @@
                 </div>
             
             </div>
-
+    
      <modal-component v-if="selectedId" :id="selectedId" @close="closeModal"></modal-component>
+     <button v-if="moreButton" class="more-button" v-on:click="getMoreImages">More</button>
     </main>
      
 

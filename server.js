@@ -31,7 +31,6 @@ const uploader = multer({
 
 app.post("/upload", uploader.single("file"), s3.upload, function (req, res) {
     //add image to the database
-    console.log("req.body ", req.body);
     const description = req.body.description;
     const username = req.body.username;
     const title = req.body.title;
@@ -49,15 +48,47 @@ app.post("/upload", uploader.single("file"), s3.upload, function (req, res) {
     }
 });
 
+app.post("/uploadComment/:id", function (req, res) {
+    console.log("req.body in uppload Comment: ", req.body);
+    //add comment to the database
+    const comment = req.body.comment;
+    const author = req.body.username;
+    const id = req.params.id;
+
+    db.addComment(comment, author, id)
+        .then((result) => {
+            console.log("A comment was posted to the database", result.rows);
+            res.json(result[0]);
+        })
+        .catch((err) => console.log("err in addComment: ", err));
+});
+
+app.get("/getAllComments/:id", function (req, res) {
+    ("app.get getAll comments has been triggerd!");
+    let id = req.params.id;
+    db.getAllComments(id).then((result) => {
+        console.log("getAllComments results: ", result);
+        res.json(result.rows);
+    });
+});
+
 app.get("/selectedImageData/:id", (req, res) => {
     console.log("get selected images has been triggerd");
     const { id } = req.params;
     db.getSelectedImage(id).then((result) => res.json(result));
 });
 
-app.get("/data.json", (req, res) => {
+app.get("/data.json/", (req, res) => {
     db.getAllImageData().then((result) => {
-        console.log("imageData: ", result);
+        res.json(result.rows);
+    });
+});
+
+app.get("/moredata.jason/:lastId", (req, res) => {
+    let lastId = req.params.lastId;
+    console.log("last id in server.js: ", lastId);
+    db.getMoreImages(lastId).then((result) => {
+        console.log("result of get more images: ", result);
         res.json(result.rows);
     });
 });

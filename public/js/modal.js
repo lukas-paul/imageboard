@@ -1,3 +1,5 @@
+import commentComponent from "./comments.js";
+
 export default {
     data() {
         return {
@@ -6,6 +8,9 @@ export default {
             description: "",
             username: "",
         };
+    },
+    components: {
+        "comment-component": commentComponent,
     },
     props: ["id"],
     mounted: function () {
@@ -25,8 +30,8 @@ export default {
     template: `
         <div class="modal" @click="closeModal">
             <img class="modal-image" v-bind:src="url" @click.stop/>
-            <p class="modal-text">Title: {{title}}<br> Usernmae: {{username}}<br> Description: {{description}}<p>
-            
+            <p class="modal-text">Title: {{title}}<br> Usernmae: {{username}}<br> Description: {{description}}</p>
+            <comment-component :id="id"></comment-component>
         </div>
     `,
     methods: {
