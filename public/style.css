@@ -86,3 +86,33 @@ button {
 button:hover {
     background-color: red;
 }
+
+.modal {
+    background-color: black;
+    color: white;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
+    grid-template-rows: 1fr 8fr 2fr;
+}
+
+.modal-image {
+    grid-column: 2;
+    grid-row: 2;
+    height: 500px;
+    width: 500px;
+    object-fit: cover;
+    place-self: center;
+}
+
+.modal-text {
+    grid-column: 2;
+    grid-row: 3;
+    place-self: center;
+}

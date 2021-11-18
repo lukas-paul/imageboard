@@ -21,3 +21,12 @@ module.exports.addImage = (description, username, title, url) => {
         return result.rows;
     });
 };
+
+module.exports.getSelectedImage = (id) => {
+    const params = [id];
+    return db
+        .query(`SELECT * FROM images WHERE id=$1`, params)
+        .then((result) => {
+            return result.rows;
+        });
+};

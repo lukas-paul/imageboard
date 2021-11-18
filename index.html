@@ -31,16 +31,17 @@
         
             <div class="board">
                 <div v-for="element in imageData">
-                    <div class="img-text-container">
-                    <img :key="element.id" class="image" :src="element.url" />
-                    <p>{{element.title}}</p>
+                    <div class="img-text-container" >
+                    <img :id="element.id" class="image" :src="element.url" @click="selectImage"/>
+                        <p>{{element.title}}</p>
                     </div>
                 </div>
             
             </div>
-      
-     
+
+     <modal-component v-if="selectedId" :id="selectedId" @close="closeModal"></modal-component>
     </main>
+     
 
     <script src="/js/app.js" type="module" crossorigin="use-credentials"></script>
 </body>

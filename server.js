@@ -49,6 +49,12 @@ app.post("/upload", uploader.single("file"), s3.upload, function (req, res) {
     }
 });
 
+app.get("/selectedImageData/:id", (req, res) => {
+    console.log("get selected images has been triggerd");
+    const { id } = req.params;
+    db.getSelectedImage(id).then((result) => res.json(result));
+});
+
 app.get("/data.json", (req, res) => {
     db.getAllImageData().then((result) => {
         console.log("imageData: ", result);

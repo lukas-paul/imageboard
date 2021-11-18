@@ -1,4 +1,5 @@
 import * as Vue from "./vue.js";
+import modalComponent from "./components.js";
 
 Vue.createApp({
     data() {
@@ -9,13 +10,22 @@ Vue.createApp({
             description: "",
             username: "",
             file: null,
+            selectedId: null,
         };
     },
-
+    components: {
+        "modal-component": modalComponent,
+    },
     methods: {
         setFile(e) {
             this.file = e.target.files[0];
         },
+
+        selectImage(e) {
+            console.log("e.target: ", e.target.id);
+            this.selectedId = e.target.id;
+        },
+
         upload() {
             console.log("this: ", this);
             const formData = new FormData();
@@ -29,15 +39,19 @@ Vue.createApp({
                 body: formData,
             })
                 .then((result) => {
-                    result.json();
+                    return result.json();
                 })
                 .then((result) => {
-                    console.log("images from server:", result);
+                    console.log("image upload in fetch:", result);
                     this.imageData.unshift(result);
                 })
                 .catch((err) =>
                     console.log("something isnt working in fetch: ", err)
                 );
+        },
+        closeModal() {
+            console.log("closemodal is triggered");
+            this.selectedId = null;
         },
     },
     mounted: function () {
