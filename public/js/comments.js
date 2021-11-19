@@ -12,11 +12,11 @@ export default {
             <div class="leave-comment">
                 <div><label>Comment</label><textarea v-model="comment" name="comment" class="input" rows="4"></textarea></div>
                 <div><label>Username</label><input v-model="username" name="username" class="input"></div>
-                <button v-on:click="uploadComment">Upload</button>
+                <button v-on:click="uploadComment" id="upload-comment">comment</button>
             </div>
             <div class="comments">
                 <h2>Comments</h2>
-                <div v-for="element in commentArray">
+                <div v-for="element in commentArray" class="show-comments">
                     <div>
                         <p>{{element.author}}:<br>{{element.comment}}</p>
                     </div>

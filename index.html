@@ -3,11 +3,17 @@
 <head>
     <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
     <title>Imageboard</title>
     <link href="/style.css" rel="stylesheet" />
 </head>
 <body>
-    <h1>Imageboard</h1>
+    
+    <header>  
+        <img src="/ravioli.png" class="ravioli"/>
+        <h1>Food in Berlin</h1>
+    </header>
+  
     <main id="main">
         
         <div class="upload-area">
@@ -32,7 +38,7 @@
             <div class="board">
                 <div v-for="element in imageData">
                     <div class="img-text-container" >
-                    <img :id="element.id" class="image" :src="element.url" @click="selectImage"/>
+                    <a :href="selectedId" @click.prevent><img :id="element.id" class="image" :src="element.url" @click="selectImage"/></a>
                         <p>{{element.title}}</p>
                     </div>
                 </div>

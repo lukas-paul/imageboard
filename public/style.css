@@ -1,3 +1,19 @@
+header {
+    height: 10%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.ravioli {
+    height: 30px;
+    object-fit: cover;
+    margin-right: 5px;
+}
+
+h1,
+h2 {
+    font-family: Impact;
+}
 #main {
     display: grid;
     grid-template-rows: 0.5fr 0.5fr 8fr 0.5fr;
@@ -87,8 +103,13 @@ button:hover {
     background-color: red;
 }
 
+.more-button {
+    grid-row: 4;
+    place-self: center;
+}
+
 .modal {
-    background-color: black;
+    background-color: rgb(0, 0, 0, 0.3);
     color: white;
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -96,36 +117,100 @@ button:hover {
     top: 0;
     width: 100%; /* Full width */
     height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
     display: grid;
-    grid-template-columns: 2fr 5fr 2fr;
-    grid-template-rows: 1fr 8fr 2fr;
+    grid-template-columns: 2fr 6fr 2fr;
+    grid-template-rows: 1fr 8fr 1fr;
+}
+
+.modal-center {
+    background: black;
+    opacity: 1;
+    grid-column: 2;
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 2fr 1fr;
+    overflow-y: auto;
+}
+
+.error-message {
+    grid-column: 2;
+    grid-row: 2;
 }
 
 .modal-image {
-    grid-column: 2;
-    grid-row: 2;
+    grid-column: 1;
+    grid-row: 1;
     height: 500px;
     width: 500px;
     object-fit: cover;
-    place-self: center;
 }
 
 .modal-text {
+    grid-row: 1;
     grid-column: 2;
-    grid-row: 3;
-    place-self: center;
-}
-
-.more-button {
-    grid-row: 4;
-    place-self: center;
 }
 
 .comment-section {
-    grid-column: 3;
+    grid-row: 2;
+    display: grid;
+    grid-template-rows: 2fr 1fr;
+}
+
+.leave-comment {
+    margin-left: 5px;
     grid-row: 2;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.comments {
+    width: 100%;
+    grid-row: 1;
+    border: white 1px solid;
+    align-self: stretch;
+    overflow-y: auto;
+}
+
+.show-comments {
+    overflow-y: auto;
+    border: 1px solid white;
+}
+
+#upload-comment {
+    background-color: white;
+    color: black;
+}
+#upload-comment:hover {
+    background-color: red;
+}
+
+#top {
+    grid-row: 1;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    background-color: black;
+    opacity: 80%;
+}
+#left {
+    grid-column: 1;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    background-color: black;
+    opacity: 80%;
+}
+#right {
+    grid-column: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    background-color: black;
+    opacity: 80%;
+}
+#bottom {
+    grid-row: 3;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    background-color: black;
+    opacity: 80%;
 }

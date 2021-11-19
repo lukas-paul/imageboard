@@ -10,7 +10,7 @@ Vue.createApp({
             description: "",
             username: "",
             file: null,
-            selectedId: null,
+            selectedId: location.pathname.slice(1),
             moreButton: true,
         };
     },
@@ -24,7 +24,9 @@ Vue.createApp({
 
         selectImage(e) {
             console.log("e.target: ", e.target.id);
-            this.selectedId = e.target.id;
+            let id = e.target.id;
+            history.pushState({}, "", `/${id}`);
+            this.selectedId = id;
         },
 
         upload() {
@@ -53,6 +55,7 @@ Vue.createApp({
         closeModal() {
             console.log("closemodal is triggered");
             this.selectedId = null;
+            history.pushState({}, "", `/`);
         },
         getMoreImages() {
             let length = this.imageData.length;
@@ -78,5 +81,9 @@ Vue.createApp({
                 console.log("imagedata from server:", data);
                 this.imageData = data;
             });
+        addEventListener("popstate", (e) => {
+            console.log(location.pathname, e.state);
+            this.selectedId = location.pathname.slice(1);
+        });
     },
 }).mount("#main");
