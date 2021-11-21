@@ -287,3 +287,8 @@ textarea {
     font-size: 16px;
     resize: none;
 }
+
+.preview {
+    width: 50px;
+    height: 50px;
+}

@@ -23,8 +23,6 @@
             <div>
        
                 <input class="file-input"
-                    next="file"
-                    previous="file"
                     id="file"
                     name="file"
                     type="file"
@@ -32,6 +30,7 @@
                     @change="setFile"
                 > 
             <label for="file" class="file-label">Choose a file</label>
+            <p>{{preview}}</p>
             <button v-on:click="upload">Upload</button>
         </div>
         

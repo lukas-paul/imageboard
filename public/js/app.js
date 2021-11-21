@@ -13,6 +13,7 @@ Vue.createApp({
             moreButton: true,
             nextId: null,
             previousId: null,
+            preview: null,
         };
     },
     components: {
@@ -21,6 +22,8 @@ Vue.createApp({
     methods: {
         setFile(e) {
             this.file = e.target.files[0];
+            this.preview = e.target.files[0].name;
+            console.log("preview: ", e.target.files[0].name);
         },
 
         selectImage(e) {
@@ -63,6 +66,9 @@ Vue.createApp({
                 .then((result) => {
                     console.log("image upload in fetch:", result);
                     this.imageData.unshift(result);
+                    this.title = "";
+                    this.description = "";
+                    this.username = "";
                 })
                 .catch((err) =>
                     console.log("something isnt working in fetch: ", err)
