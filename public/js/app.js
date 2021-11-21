@@ -5,13 +5,14 @@ Vue.createApp({
     data() {
         return {
             imageData: null,
-            images: [],
             title: "",
             description: "",
             username: "",
             file: null,
             selectedId: location.pathname.slice(1),
             moreButton: true,
+            nextId: null,
+            previousId: null,
         };
     },
     components: {
@@ -23,12 +24,27 @@ Vue.createApp({
         },
 
         selectImage(e) {
-            console.log("e.target: ", e.target.id);
+            console.log("next ", e.target.lang);
+            console.log("previous ", e.target.title);
+            console.log("current ", e.target.id);
+            let previousId = e.target.title;
+            let nextId = e.target.lang;
             let id = e.target.id;
             history.pushState({}, "", `/${id}`);
             this.selectedId = id;
+            this.nextId = nextId;
+            this.previousId = previousId;
         },
-
+        nextImage(next) {
+            console.log("next image has been triggered: ", this.selectedId);
+            this.selectedId = next;
+            console.log("selectedId after push state: ", this.selectedId);
+        },
+        previousImage(previous) {
+            console.log("previous image has been triggered: ", this.selectedId);
+            this.selectedId = previous;
+            console.log("selectedId after push state: ", this.selectedId);
+        },
         upload() {
             console.log("this: ", this);
             const formData = new FormData();

@@ -1,3 +1,7 @@
+* {
+    font-family: helvetica;
+}
+
 header {
     height: 10%;
     display: flex;
@@ -10,13 +14,24 @@ header {
     margin-right: 5px;
 }
 
+.ravioli:hover {
+    animation-duration: 3s;
+    animation-name: rotate;
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(3turn);
+    }
+}
+
 h1,
 h2 {
     font-family: Impact;
 }
 #main {
     display: grid;
-    grid-template-rows: 0.5fr 0.5fr 8fr 0.5fr;
+    grid-template-rows: 0.5fr 8fr 0.5fr;
 }
 
 span {
@@ -24,14 +39,16 @@ span {
 }
 
 .upload-area {
-    width: 50%;
+    width: 100%;
     grid-row: 1;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 .board {
-    grid-row: 3;
+    grid-row: 2;
 }
 
 .image {
@@ -50,6 +67,7 @@ span {
 .img-text-container {
     height: 350px;
     border: 1px solid black;
+    margin-bottom: 10px;
 }
 
 .file-input {
@@ -71,6 +89,7 @@ span {
     background-color: black;
     display: inline-block;
     cursor: pointer;
+    margin-left: 5px;
 }
 
 .file-input + label:hover {
@@ -84,6 +103,8 @@ span {
     height: 30px;
     border: 2px solid black;
     padding: 0px;
+    margin-left: 5px;
+    margin-right: 10px;
 }
 
 button {
@@ -104,11 +125,12 @@ button:hover {
 }
 
 .more-button {
-    grid-row: 4;
+    grid-row: 3;
     place-self: center;
 }
 
 .modal {
+    position: relative;
     background-color: rgb(0, 0, 0, 0.3);
     color: white;
     position: fixed; /* Stay in place */
@@ -117,20 +139,17 @@ button:hover {
     top: 0;
     width: 100%; /* Full width */
     height: 100%; /* Full height */
-    display: grid;
-    grid-template-columns: 2fr 6fr 2fr;
-    grid-template-rows: 1fr 8fr 1fr;
 }
 
 .modal-center {
+    position: absolute;
     background: black;
     opacity: 1;
-    grid-column: 2;
-    grid-row: 2;
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-    grid-template-rows: 2fr 1fr;
-    overflow-y: auto;
+    height: 90%;
+    width: 60%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .error-message {
@@ -138,44 +157,117 @@ button:hover {
     grid-row: 2;
 }
 
-.modal-image {
+.img-container {
+    position: relative;
     grid-column: 1;
     grid-row: 1;
-    height: 500px;
-    width: 500px;
+    height: 70%;
+    width: 100%;
+}
+
+.modal-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    overflow: hidden;
+}
+
+.left-button {
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 10px;
+    background-color: black;
+    opacity: 0.8;
+}
+
+.right-button {
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    background-color: black;
+    opacity: 0.8;
+}
+
+.arrow {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    transform: translateY(-50%);
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+}
+
+#right-arrow {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+
+#left-arrow {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
 }
 
 .modal-text {
-    grid-row: 1;
-    grid-column: 2;
+    background-color: rgb(0, 0, 0, 0.3);
+    position: absolute;
+    z-index: 100;
+    color: white;
+    width: 100%;
+}
+
+.img-info {
+    margin-top: 5px;
+    margin-left: 5px;
 }
 
 .comment-section {
-    grid-row: 2;
+    background-color: white;
+    position: absolute;
+    width: 100%;
+    height: 30%;
     display: grid;
-    grid-template-rows: 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
 }
 
 .leave-comment {
+    align-self: center;
+    justify-self: start;
     margin-left: 5px;
     grid-row: 2;
     display: flex;
-    flex-direction: row;
-    align-items: flex-end;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .comments {
     width: 100%;
-    grid-row: 1;
-    border: white 1px solid;
     align-self: stretch;
+    grid-row: 1;
     overflow-y: auto;
+    color: black;
+}
+
+.comment-field {
+    text-justify: center;
+}
+
+h2 {
+    margin: 0px;
 }
 
 .show-comments {
-    overflow-y: auto;
-    border: 1px solid white;
+    border-top: lightgray 1px solid;
+    border-bottom: lightgray 1px solid;
+    color: black;
 }
 
 #upload-comment {
@@ -186,31 +278,12 @@ button:hover {
     background-color: red;
 }
 
-#top {
-    grid-row: 1;
-    grid-column-start: 1;
-    grid-column-end: 4;
-    background-color: black;
-    opacity: 80%;
-}
-#left {
-    grid-column: 1;
-    grid-row-start: 2;
-    grid-row-end: 3;
-    background-color: black;
-    opacity: 80%;
-}
-#right {
-    grid-column: 3;
-    grid-row-start: 2;
-    grid-row-end: 3;
-    background-color: black;
-    opacity: 80%;
-}
-#bottom {
-    grid-row: 3;
-    grid-column-start: 1;
-    grid-column-end: 4;
-    background-color: black;
-    opacity: 80%;
+textarea {
+    top: 50%;
+    width: 80%;
+    height: 30px;
+    padding: 12px 20px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
 }

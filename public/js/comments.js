@@ -10,8 +10,8 @@ export default {
     template: `
         <div @click.stop class="comment-section">
             <div class="leave-comment">
-                <div><label>Comment</label><textarea v-model="comment" name="comment" class="input" rows="4"></textarea></div>
-                <div><label>Username</label><input v-model="username" name="username" class="input"></div>
+                <div><textarea placeholder="Comment" v-model="comment" name="comment" rows="4" cols="80"></textarea></div>
+                <div><input placeholder="Name" v-model="username" name="username" class="input"></div>
                 <button v-on:click="uploadComment" id="upload-comment">comment</button>
             </div>
             <div class="comments">
@@ -34,7 +34,23 @@ export default {
                 this.commentArray = data;
             });
     },
+    watch: {
+        id() {
+            console.log("watcher is triggerd");
+            this.relaodComments();
+        },
+    },
     methods: {
+        relaodComments() {
+            fetch(`/getAllComments/${this.id}`)
+                .then((data) => {
+                    return data.json();
+                })
+                .then((data) => {
+                    console.log("we got comments back from the server: ", data);
+                    this.commentArray = data;
+                });
+        },
         uploadComment: function () {
             console.log("this.id in upload Image: ", this.id);
             fetch(`/uploadComment/${this.id}`, {

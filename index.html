@@ -23,6 +23,8 @@
             <div>
        
                 <input class="file-input"
+                    next="file"
+                    previous="file"
                     id="file"
                     name="file"
                     type="file"
@@ -38,14 +40,14 @@
             <div class="board">
                 <div v-for="element in imageData">
                     <div class="img-text-container" >
-                    <a :href="selectedId" @click.prevent><img :id="element.id" class="image" :src="element.url" @click="selectImage"/></a>
+                    <a :href="selectedId" @click.prevent><img :id="element.id" :lang="element.next" :title="element.previousId" class="image" :src="element.url"  @click="selectImage"/></a>
                         <p>{{element.title}}</p>
                     </div>
                 </div>
             
             </div>
     
-     <modal-component v-if="selectedId" :id="selectedId" @close="closeModal"></modal-component>
+     <modal-component v-if="selectedId" :id="selectedId" :previous="previousId" :next="nextId" @close="closeModal" @next="nextImage" @previous="previousImage"></modal-component>
      <button v-if="moreButton" class="more-button" v-on:click="getMoreImages">More</button>
     </main>
      

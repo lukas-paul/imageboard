@@ -10,16 +10,24 @@ const db = spicedPg(
 
 module.exports.getAllImageData = () => {
     return db.query(
-        `SELECT * FROM images
-         ORDER BY id DESC
-        LIMIT 10`
+        `
+        SELECT url, title, id,
+        LAG (id,1) OVER (ORDER BY id DESC) AS "next",
+        LEAD (id,1) OVER (ORDER BY id DESC) AS "previousId"
+        FROM images
+        ORDER BY id DESC
+        LIMIT 10
+        `
     );
 };
 
 module.exports.getMoreImages = (lastId) => {
     const params = [lastId];
     return db.query(
-        `SELECT url, title, id, (
+        `SELECT url, title, id,
+        LAG (id,1) OVER (ORDER BY id DESC) AS "next",
+        LEAD (id,1) OVER (ORDER BY id DESC) AS "previousId",
+        (
             SELECT id FROM images
             ORDER BY id ASC
             LIMIT 1) AS "lowestId"
@@ -44,8 +52,16 @@ module.exports.addImage = (description, username, title, url) => {
 module.exports.getSelectedImage = (id) => {
     const params = [id];
     return db
-        .query(`SELECT * FROM images WHERE id=$1`, params)
+        .query(
+            `SELECT url, title, id, username, description, created_at,
+                (SELECT id FROM images WHERE id < $1 ORDER BY id DESC LIMIT 1) AS "next",
+                (SELECT id FROM images WHERE id > $1 ORDER BY id ASC LIMIT 1) AS "previousId"
+            FROM images
+            WHERE id=$1`,
+            params
+        )
         .then((result) => {
+            console.log("result of get SelectImage", result.rows);
             return result.rows;
         });
 };
