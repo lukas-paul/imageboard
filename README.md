@@ -6,11 +6,12 @@ Image board to upload images of food. Created with Vue.js, node.js and PostgreSQ
 
 **_Look at images and load more_**
 
-<img src="/public/load-images.gif">
+<img src="public/load-images.gif">
 
-**_Change profile picture_**
+**_Image-Modal with previous and next function_**
+Hover over the image to display more information, write comments underneath.
 
-<img src="client/public/SN_new_photo.gif">
+<img src="public/previous-next.gif">
 
 **_Find friends_**
 
