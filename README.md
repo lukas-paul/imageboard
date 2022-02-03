@@ -12,7 +12,3 @@ Image board to upload images of food. Created with Vue.js, node.js and PostgreSQ
 Hover over the image to display more information, write comments underneath.
 
 <img src="public/previous-next.gif">
-
-**_Find friends_**
-
-<img src="client/public/SN_find_new_people.gif">
