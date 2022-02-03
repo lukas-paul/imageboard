@@ -21,6 +21,7 @@ Vue.createApp({
     },
     methods: {
         setFile(e) {
+            console.log("setFile");
             this.file = e.target.files[0];
             this.preview = e.target.files[0].name;
             console.log("preview: ", e.target.files[0].name);
